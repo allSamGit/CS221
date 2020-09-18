@@ -1,0 +1,97 @@
+****************
+* GridMonitor
+* CS 221
+* 09/04/2017
+* Saman Rastgar Student
+**************** 
+
+OVERVIEW:
+
+GridMonitor is a project that demonstrates an spaceship
+We monitor  with some cells and we try to monitor the dangerous cells to eliminate it
+before the spaceship explode.
+
+
+
+INCLUDED FILES:
+
+GridMonitor.java (Class that we write)
+GridMonitorInterface.java  (interface)
+Sample files
+GridMonitorTest.java (Tester)
+README (this file)
+
+
+BUILDING AND RUNNING:
+
+ From the eclipse we compile and run GridMonitorTest.java
+ and check if we have no errors and all test have been passed:
+ 
+ We can also compile GridMonitor class with command:
+ 
+ $ javac GridMonitor.java
+
+ Run the compiled GridMonitor class with the command:
+ 
+ $ java GridMonitor
+ 
+
+PROGRAM DESIGN:
+
+GridMonitor class implements GridMonitor Interface which has all necessary functions 
+needed for calculating SumGrid,AverageGrid,DeltaGrid and DangerGrid
+Constructor we use has to throw FileNotFoundException and passes fileName as a parameter.
+We should then set the fileScanner to the first two elements then read the rest in a while loop.
+
+One thing to consider is to make all variables private but the problem is that it is still not encapsulated
+and can be accessed through the tester.
+For this reason functions can make a copy of those 2Darray to protect it from be accessed easily.
+So methods are all used to only encapsulate our values.
+
+Constructor can be used to calculate each Grid element and also assigning them to their related Grid.
+For sum Grid we are going to find the position of each element in array and check the surrounding positions
+one by one that if they miss any top,bottom,left or right element we replace those with the original value.
+On average grid we divide sumGrid with 4 and in delta we divide all sumGrids by 2.
+
+Next discussion would be on DangerGrid which is the range that we are using to make sure
+our elements are not off by the range and if they are,they will be assigned with false value and will  
+shut down before exploding.
+
+Things to be checked for the Danger zone is the offset of each element that needs to be 
+between Average+ 50% of Average and Average-50% of Average and the completed formula can be Average+DelaValue
+and Average-DeltaValue.
+
+At the end toString Method should be completed to return The Grid Values
+
+TESTING:
+
+Tester for this program was the pre designed program called GridMonitorTest
+that includes:
+
+getBaseGridNegativesTest                     	  
+getSurroundingSumGridNegativesTest            	   
+getSurroundingAvgGridNegativesTest            	   
+getDeltaGridNegativesTest                     	   
+getDangerGridNegativesTest                    	   
+load1x1Test                      //test sample file 1          	   
+getSurroundingSumGrid1x1Test                  	   
+loadWideRangeTest                //test sample file 2             	   
+getBaseGridWideRangeTest                      	   
+getBaseEncapsulationTest                 //Encapsulation test     	   
+getSurroundingSumGridEncapsulationTest        	   
+getSurroundingAvgGridEncapsulationTest        	   
+getDangerGridEncapsulationTest
+ 
+
+It was 33 test that needed all to be passed.
+
+
+
+DISCUSSION:
+ 
+Grid Monitor Program was a practice for playing with arrays in a fun game platform that makes us think "We need to survive!We shouldn't fail".
+The idea of Encapsulation and how some one can access your code and modify it easily was interesting and also scary.
+This project was a refresher of 2Darray programming.
+
+
+ 
