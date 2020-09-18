@@ -1,0 +1,113 @@
+****************
+* Project 8/Double Linked List
+* CS221-Section003
+* 11/14/2017
+* Saman Rastgar
+**************** 
+
+OVERVIEW:
+
+In this program we are going to implement our list in double linked list structure.
+
+
+INCLUDED FILES:
+
+* ListTester.java             //Testing the List
+* IUDoubleLinkedList.java     //Double linked list class that we have implemented
+* IndexedUnsortedList.java    //Interface used to build scenarios
+* IUListWithListIterator.java //An interface that have the methods to use in order to construct our List Iterator
+* README - this file
+
+
+COMPILING AND RUNNING:
+
+ Use command line prompt to compile and run program:
+ 
+
+ From the directory containing all source files, compile the
+ driver class (and all dependencies) with the command:
+ 
+ $ javac ListTester.java
+ 
+ Run the compiled class file with the command:
+ 
+ $ java ListTester
+
+U should also try to run with command line arguments like 
+
+	 *  -a : print results from an emptyList_addToRearA_A_ll tests (default is to print failed tests, only)
+	 *  -s : hide Strings from toString() tests
+	 *  -m : hide section summaries in output
+	 
+Example: $ java ListTester -a
+
+PROGRAM DESIGN AND IMPORTANT CONCEPTS:
+
+ 
+In List Tester we need to make sure to change our LIST_TO_USE to double linked list as follows:
+ 
+private final static ListToUse LIST_TO_USE = ListToUse.doubleLinkedList;
+
+then we need to check if we have double linked list case uncommented when we create our new list
+
+
+ List tester:
+ 
+we have so many Test to check if our elements are capable to be added,removed,modified
+and we will use lambda idea to make our scenario for each test cases.
+
+We have 3 different kind of Tests such as:
+
+-> empty element test,single element test,two element test
+-> iterator test(Iterator concurrency test)
+->List iterator test (which is a utility that double linked list has)
+
+our tests will be operated on single,two and three elements so we can make sure there is no leak in our tests and we have tested 
+before element,current element and after element every time we add,remove or modify the list.
+
+List tester class consist of 2 parts:
+1.The part we are testing our list 
+2.The part we create our scenarios and methods
+
+We basically make sure and run our test to see what might go wrong in our created list.
+
+IUDouble Linked List:
+
+This class is going to implement all the method we need to create our list.
+Double Linked list uses two pointer to make the elements connected to each other.
+Class has an inner class called DLLIterator which implements ListIterator methods
+methods we have for our list iterator are:
+
+add(E e)               Inserts the specified element into the list (optional operation).
+boolean	hasNext()      Returns true if this list iterator has more elements when traversing the list in the forward direction.
+boolean	hasPrevious()  Returns true if this list iterator has more elements when traversing the list in the reverse direction.
+E	next()             Returns the next element in the list and advances the cursor position.
+int	nextIndex()        Returns the index of the element that would be returned by a subsequent call to next().
+E	previous()         Returns the previous element in the list and moves the cursor position backwards.
+int	previousIndex()    Returns the index of the element that would be returned by a subsequent call to previous().
+void	remove()       Removes from the list the last element that was returned by next() or previous() (optional operation).
+void	set(E e)	   Replaces the last element returned by next() or previous() with the specified element (optional operation).
+
+Each method will return an specific kind of value 
+Each method will throw an specific exception
+
+
+IUDoubleLinked List will implement another interface that contains method for constructing ListIterator which is called IUListWithListIterator.
+
+
+
+TESTING:
+
+ Test methods existed in ListTester class but Test that needs to be analyzed are in scenarios where we want to
+ RemoveFirst,RemoveLast,IsEmpty Test,toString test,add,set and get test,contain test.
+ 
+
+DISCUSSION:
+ 
+In double linked list compare to single linked list is a bit different and instead having 2 links we are going to have 4 links between the one element
+with other parts of the element.The steps to set the pointers to each other should be done in order unless we might lose our list.
+Also double linked list is faster and more efficient in algorithms.
+
+In my opinion the challenging part was  When it comes to testing.Because there is a lot of possibilities that needs to be checked
+and as many as test we create we can make sure that our methods will be more accurate and doesn't ran into problem.
+ 
