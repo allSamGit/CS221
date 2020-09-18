@@ -1,0 +1,48 @@
+****************
+* Debugging
+* CS 221
+* 09/12/2050
+* Saman Rastgar 
+**************** 
+
+To compile and Test the program:
+
+cd Debugging-P2
+cd src
+
+$ javac *.java
+$ java SetTester
+
+Problems Found in ArraySet:
+
+Problem 1:
+emptySet_testIsEmpty was the first test was failing and i figured the problem by setting the Break point one that tester function
+step into functions of this test from right to left and When we get to the Function isEmpty() function we see that we jump over the 
+the if statement so we will go into the function to see what is the problem.What we can find in the function is rear>0 so it doesn't make the test value true.
+
+Solution 1:We need to change the value of rear to zero rear==0
+
+Problem 2:
+we can check that emptySet_addA_A_testIsEmpty() test method is failing so we are going through to fix the problem.
+when we set the break point to the tester we can monitor the values.Then we finally end up in in function add which includes
+if (!contains(element)) statement which in this if statement we have another if statement if (rear >= setArray.length)
+by stepping over the lines we can see that rear value doesn't change while array length expands so we had to increment rear because we are adding
+Steps of debugging: step into emptySet_addA_A() ~> step into set.add(ELEMENT_A); ~> rear doesn't update
+
+solution:To add rear++ in the if(!contains(element)) condition(first time i added rear++ in function not that if block and rear was updating but not comparing to values)
+
+problem 3:
+for this problem we need to have an understanding of this program and what rear does.
+rear works as a pointer for what element we are checking.
+When we remove a value from array we need to make sure that we don't sign a null value to the previous element
+cause this will make a gap and we should make sure to set the rear out of the array so in that way we control the size of array 
+and we don't get index out of bound exception.
+In errors we find A_addB_AB_testRemoveA test fails.
+we set the break point in this problem and see where the A_removeA_emptySet() method is breaking
+then we check remove function by step into it and in second loop of remove function we can see that in second while loop
+we are updating the index from i+1 to i but rear is still the same value.
+so we need to change rear to one less position because the size of array is decreased by one.
+
+solution 3: Change while (i < rear) condition in remove method to (i<rear-1)
+
+ 
